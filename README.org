@@ -1,0 +1,12 @@
+* Eureka
+Blog CMS written in python 3.x
+
+** feature
+- Blog
+  + text contents
+  + tagging
+
+** future
+- Blog
+  + comment
+  + image/video management
