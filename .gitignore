@@ -1,0 +1,5 @@
+.sass-cache/*
+eureka_venv/*
+__pycache__/
+static/css
+static/.sass-cache
