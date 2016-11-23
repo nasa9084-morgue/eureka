@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>{{ site_title }}</title>
+    <link href="/static/css/style.css" rel="stylesheet"/>
+  </head>
+  <body id="dashboard">
+    {% include 'base/component/dashboard_header.tmpl' %}
+    {% include 'base/component/dashboard_sidemenu.tmpl' %}
+    <div id="dashboard_content">
+      {% block contents %}{% endblock%}
+    </div>
+  </body>
+</html>

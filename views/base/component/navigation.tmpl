@@ -1,0 +1,10 @@
+<nav id="navigationbar">
+  {% set looppath = '' %}
+  {% for slug in path %}
+    {% set looppath = looppath + '/' + slug %}
+    <a href="{{ looppath }}">{{ slug }}</a>
+    {% if not loop.last %}
+      >
+    {% endif %}
+  {% endfor %}
+</nav>

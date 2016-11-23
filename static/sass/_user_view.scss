@@ -1,0 +1,108 @@
+@import "./variables";
+@import "./mixins";
+
+body#userview {
+    background: $UserViewBGColor;
+
+    #admin_toolbar {
+        display: flex;
+        justify-content: space-between;
+        background: $AdminToolbarBGColor;
+        color: $AdminToolbarColor;
+        border-bottom: solid 1px $AdminToolbarBGColor + #bbbbbb;
+    }
+
+    #titlebar {
+        background: $UserViewHeaderBGColor;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: .1em 1em;
+        box-shadow: 0 1px 5px 0 $ShadowColor;
+
+        h1 {
+            font-size: 2em;
+            font-weight: 900;
+            color: $UserViewHeaderColor;
+            @include text-emboss($UserViewBaseColor);
+        }
+        h1 + .description {
+            color: $UserViewHeaderColor;
+            &:before, &:after {
+                content: " - ";
+            }
+        }
+    }
+
+    .contents {
+        height: auto;
+        border: solid 1px darken($UserViewBGColor, 15%);
+        margin: 1em 5em 3em;;
+        color: $UserViewContentColor;
+        background: $UserViewContentBGColor;
+        padding: 1em;
+
+        .abstract {
+            padding-bottom: 3em;
+            margin-bottom: 1em;
+            &:not(:first-of-child):not(:last-of-child){
+                border-bottom: solid 1px gray;
+            }
+            header {
+                display: flex;
+                align-items: baseline;
+                justify-content: space-between;
+                border-bottom: 2px solid $ArticleTitleUnderlineColor;
+                h2 {
+                    font-size: 1.5em;
+                    font-weight: 500;
+                    padding-left: .5em;
+                }
+                .date {
+                    font-weight: 500;
+                    color: darken($UserViewBaseColor, 40%);
+                }
+            }
+            .tag {
+                font-size: .7em;
+                font-weight: 700;
+                padding: .3em;
+                margin: 0 .3em;
+                background: $UserViewBaseColor;
+                border-radius: .5em;
+                color: lighten($UserViewBaseColor, 30%);
+            }
+            p {
+                padding-left: 1em;
+                margin: .5em;
+            }
+            .readmore {
+                text-align: center;
+                a {
+                    border-top: 2px dotted $UserViewBaseColor;
+                    border-bottom: 2px dotted $UserViewBaseColor;
+                }
+            }
+            footer {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                color: $FooterColor;
+            }
+        }
+    }
+
+
+    & > footer {
+        font-size: .7em;
+        font-weight: 100;
+        position: fixed;
+        height: 1.5em;
+        width: 100%;
+        bottom: 0;
+        background: lightgray;
+        text-align: right;
+        padding-right: 1em;
+        color: gray;
+    }
+}

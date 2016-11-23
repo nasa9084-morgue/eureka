@@ -1,0 +1,16 @@
+@import "./variables";
+
+@mixin shadow {
+    box-shadow: 0 1px 5px 0 $ShadowColor;
+}
+
+@mixin text-emboss($color) {
+    text-shadow:
+    1px 1px 0 lighten($color, 15%),
+    -1px -1px 0 darken($color, 15%);
+}
+
+@mixin hover-bg-trans($color, $percent) {
+    background: darken($color, $percent);
+    transition: background .2s ease;
+}

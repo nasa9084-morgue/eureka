@@ -1,0 +1,42 @@
+{% extends 'base/admin_base.tmpl' %}
+
+{% block contents %}
+  <header>
+    <h2 class="sub_title">Articles</h2>
+    <a href="/admin/article.new">NEW Article</a>
+  </header>
+  <table class="list_table">
+    <thead><tr>
+      <th class="title">Title</th>
+      <th class="author">Author</th>
+      <th class="tags">Tags</th>
+      <th class="status">Status</th>
+      <th class="created">Created Date</th>
+      <th class="published">Published Date</th>
+    </tr></thead>
+    <tbody>
+      {% for article in articles|reverse %}
+        <tr>
+          <td class="title"><a href="/admin/article/{{ article.slug }}">{{ article.title|e }}</a></td>
+          <td class="author">{{ article.author }}</td>
+          <td class="tags">
+            {% for tag in article.tags %}
+              <a href="/admin/tag/{{ tag }}">{{ tag|e }}</a>{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </td>
+          <td class="status">{{ article.status.value }}</td>
+          <td class="created">{{ article.created }}</td>
+          <td class="published">{{ article.published }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot><tr>
+      <td class="title">Title</td>
+      <td class="author">Author</td>
+      <td class="tags">Tags</td>
+      <td class="status">Status</td>
+      <td class="created">Created Date</td>
+      <td class="published">Published Date</td>
+    </tr></tfoot>
+  </table>
+{% endblock%}

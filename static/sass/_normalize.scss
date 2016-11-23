@@ -1,0 +1,89 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjapanese.css);
+html {
+    min-height: 100vh;
+    color: black;
+    font-size: 1em;
+    font-weight: normal;
+    text-decoration: none;
+    * {
+        margin: 0;
+        padding: 0;
+        font-size: inherit;
+        font-weight: inherit;
+        box-sizing: border-box;
+        text-decoration: inherit;
+        height: 100%;
+        border: none;
+        font-family: 'Noto Sans Japanese', sans-serif;
+    }
+
+    body {
+        width: 100%;
+    }
+
+    a {
+        background: transparent;
+        color: inherit;
+
+        &:active, &:hover {
+            outline: 0;
+        }
+    }
+
+    b, strong {
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    pre {
+        overflow: auto;
+    }
+
+    code, pre {
+        font-family: monospace, monospace;
+    }
+
+    small {
+        font-size: 80%;
+    }
+
+    sub, sup {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+    }
+
+    sup {
+        top: -.5em;
+    }
+
+    sub {
+        bottom: -.25em;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    button, input, select, textarea {
+        color: inherit;
+        font: inherit;
+    }
+
+    button {
+        overflow: visible;
+    }
+
+    button, select {
+        text-transform: none;
+    }
+
+    input {
+        line-height: normal;
+    }
+}

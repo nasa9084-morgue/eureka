@@ -1,0 +1,199 @@
+@import "./variables";
+@import "./mixins";
+
+$ADMIN-HEADER-HEIGHT: 2em;
+$ADMIN-SIDEBAR-WIDTH: 15vw;
+
+body#dashboard {
+    background: $AdminViewBGColor;
+    a {
+        color: $AdminViewAccentColor;
+    }
+
+    #dashboard_header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: $ADMIN-HEADER-HEIGHT;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: $AdminViewHeaderBGColor;
+
+        * {
+            align-self: stretch;
+            display: flex;
+            align-items: center;
+            color: $AdminViewHeaderColor;
+        }
+
+        a {
+            transition: background .2s ease;
+            &:hover {
+                @include hover-bg-trans(
+                    $AdminViewHeaderBGColor, 15%);
+            }
+        }
+
+        .left *, .right * {
+            padding: 0 .5em;
+        }
+
+        .site_title {
+            font-weight: bold;
+        }
+    }
+
+    #dashboard_sidemenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin-top: $ADMIN-HEADER-HEIGHT;
+        padding-top: 1em;
+        float: left;
+        width: $ADMIN-SIDEBAR-WIDTH;
+        height: 100vh;
+        background: $AdminViewSidebarBGColor;
+        display: flex;
+        flex-direction: column;
+
+        * {
+            align-self: stretch;
+            display: flex;
+            flex-direction: column;
+            color: $AdminViewSidebarColor;
+        }
+
+        ul {
+            align-self: stretch;
+            li {
+                height: 2em;
+            }
+        }
+
+        a {
+            transition: background .2s ease;
+            justify-content: center;
+            padding-left: 10%;
+            &:hover {
+                @include hover-bg-trans(
+                    $AdminViewHeaderBGColor, 15%);
+            }
+        }
+    }
+
+    #dashboard_content {
+        margin: {
+            top: $ADMIN-HEADER-HEIGHT;
+            left: $ADMIN-SIDEBAR-WIDTH;
+        }
+        padding: 1em;
+
+        header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1em;
+            * {
+                margin-right: .5em;
+            }
+            .sub_title {
+                font-size: 1.5em;
+            }
+            a {
+                border: solid gray 1px;
+                border-radius: 3px;
+                padding: .25em;
+                background: white;
+            }
+        }
+
+        table.list_table {
+            width: 100%;
+            border: solid 1px darken($AdminViewBGColor, 20%);
+            box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, .1);
+            table-layout: fixed;
+            thead, tfoot {
+                height: 2em;
+                text-align: left;
+                background: #fdfdff;
+                th, td {
+                    padding-left: 1em;
+                }
+            }
+            tbody tr {
+                height: 3em;
+                &:nth-child(even) {
+                    background: darken($AdminViewBGColor, 5%);
+                }
+                &:nth-child(odd) {
+                    background: darken($AdminViewBGColor, 10%);
+                }
+                td {
+                    padding-left: 1em;
+                }
+            }
+            .title, tags {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+
+        input[type="text"]{
+            margin-bottom: .25em;
+            border: solid 1px darken($AdminViewBaseColor, 20%);
+            padding: .25em;
+            transition: box-shadow .5s ease;
+            &:focus {
+                transition: box-shadow .5s ease;
+                box-shadow: 0 0 2px 2px $AdminViewBaseColor;
+            }
+            &.title {
+                width: 100%;
+                font-size: 1.5em;
+            }
+
+            &.category {
+                width: 50%;
+            }
+
+            &.tags {
+                width: 50%;
+            }
+        }
+
+        input[type="submit"] {
+            background: white;
+            border: solid 1px darken($AdminViewBaseColor, 15%);
+            border-radius: 3px;
+            padding: .25em;
+            box-shadow: 0 1px 0 0 lightgray;
+            margin-bottom: .25em;
+        }
+
+        select {
+            background: white;
+        }
+
+        textarea {
+            display: block;
+            resize: vertical;
+            width: 100%;
+            height: 20em;
+            border: solid 1px darken($AdminViewBaseColor, 15%);
+            padding: .5em;
+            margin-bottom: .25em;
+            transition: box-shadow .5s ease;
+            &:focus {
+                transition: box-shadow .5s ease;
+                box-shadow: 0 0 2px 2px $AdminViewBaseColor;
+            }
+        }
+
+        .right {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{% extends 'base/admin_base.tmpl' %}
+
+{% block contents %}
+  <header>
+    <h2 class="sub_title">Create New Article</h2>
+  </header>
+  <form action="" method="POST">
+    <input class="title" name="title" type="text" value="" />
+    <label for="slug">SLUG: </label>
+    <input class="slug" name="slug" type="text"/>
+    <br/>
+    <label for="tags">TAG: </label>
+    <input class="tags" name="tags" type="text" pattern="[^/]+"/>
+    <label for="status">STATUS: </label>
+    <select id="status" name="status">
+      {% for opt in statuses %}
+        <option value="{{ opt }}">{{ opt }}</option>
+      {% endfor %}
+    </select>
+    <textarea class="content" name="content"></textarea>
+    <span class="right">
+      <input type="submit" value="POST ARTICLE"/>
+    </span>
+  </form>
+{% endblock%}

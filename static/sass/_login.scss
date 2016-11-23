@@ -1,0 +1,60 @@
+@import "variables";
+@import "mixins";
+
+body#login {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $LoginViewBGColor;
+    form {
+        border: 1px solid darken($LoginViewBGColor, 15%);
+        padding: 1em;
+        height: 13em;
+        background: $LoginViewFormBGColor;
+
+        .row {
+            height: 2em;
+            display:flex;
+            align-items: baseline;
+            margin-bottom: 1em;
+            justify-content: space-between;
+
+            h1 {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                color: $LoginViewTitleColor;
+                @include text-emboss($LoginViewBaseColor);
+                background: $LoginViewTitleBGColor;
+                border: 1px solid darken($LoginViewTitleBGColor, 10%);
+                font-size: 1.5em;
+                font-weight: 900;
+            }
+            label {
+                width: 7em;
+                margin-right: 1em;
+                padding-left: 1em;
+            }
+            input[type="text"], input[type="password"] {
+                padding: .25em;
+                border: 1px solid gray;
+            }
+            input[type="submit"] {
+                font-weight: 600;
+                color: lighten($LoginViewBaseColor, 30%);
+                padding: .25em;
+                background: $LoginViewBaseColor;
+                border: 1px solid darken($LoginViewBaseColor, 10%);
+                border-radius: 3px;
+                box-shadow: 0 1px 1px $ShadowColor;
+                cursor: pointer;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>{{ site_title }}</title>
+    <link href="/static/css/style.css" rel="stylesheet"/>
+  </head>
+  <body id="login">
+      <form action="login" method="POST">
+        <div class="row">
+          <h1>EUREKA</h1>
+        </div>
+        <div class="row">
+          <label for="login_name">login name: </label>
+          <input name="login_name" type="text"/>
+        </div><div class="row">
+          <label for="password">password: </label>
+          <input name="password" type="password"/>
+        </div><div class="row">
+          <a href="/"><< back</a>
+          <input name="submit" type="submit" value="login"/>
+        </div>
+      </form>
+  </body>
+</html>

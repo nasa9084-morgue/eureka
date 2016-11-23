@@ -1,0 +1,28 @@
+{% extends 'base/admin_base.tmpl' %}
+
+{% block contents %}
+  <header>
+    <h2 class="sub_title">Tags</h2>
+  </header>
+  <table class="list_table">
+    <thead><tr>
+      <th class="slug">Slug</th>
+      <th class="len">Articles</th>
+      <th></th>
+    </tr></thead>
+    <tbody>
+      {% for tag in tags %}
+        <tr>
+          <td class="slug"><a href="/admin/tag/{{ tag.slug }}">{{ tag.slug|e }}</a></td>
+          <td class="len">{{ tag.articles|length }}</td>
+          <td class="trash"><a href="/admin/tag/{{ tag.slug }}/delete">DEL</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot><tr>
+      <td class="slug">Slug</td>
+      <td class="len">Articles</td>
+      <td></td>
+    </tr></tfoot>
+  </table>
+{% endblock%}

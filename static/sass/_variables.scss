@@ -1,0 +1,40 @@
+// Generics
+$ShadowColor: #a9a9a9;
+
+// User View
+$UserViewBaseColor: #f4a460;
+$UserViewAccentColor: invert($UserViewBaseColor);
+$UserViewBGColor: lighten($UserViewBaseColor, 30%);
+
+$UserViewHeaderColor: darken($UserViewBaseColor, 40%);
+$UserViewHeaderBGColor: $UserViewBaseColor;
+
+$UserViewContentColor: #4d4d4d;
+$UserViewContentBGColor: #ffffff;
+
+$AdminToolbarBGColor: #000055;
+$AdminToolbarColor: #ffffff;
+$AdminToolbarBtmBorderColor: #aaaaaa;
+
+$ArticleTitleUnderlineColor: $UserViewBaseColor;
+
+$FooterColor: #808080;
+
+// Login View
+$LoginViewBaseColor: $UserViewBaseColor;
+$LoginViewBGColor: $UserViewBGColor;
+
+$LoginViewFormBGColor: $UserViewContentBGColor;
+$LoginViewTitleColor: $UserViewHeaderColor;
+$LoginViewTitleBGColor: $UserViewHeaderBGColor;
+
+// Admin View
+$AdminViewBaseColor: $UserViewBaseColor;
+$AdminViewAccentColor: $UserViewAccentColor;
+$AdminViewBGColor: lighten($AdminViewBaseColor, 30%);
+
+$AdminViewHeaderColor: darken($AdminViewBaseColor, 40%);
+$AdminViewHeaderBGColor: $AdminViewBaseColor;
+
+$AdminViewSidebarColor: darken($AdminViewBaseColor, 40%);
+$AdminViewSidebarBGColor: desaturate(darken($AdminViewHeaderBGColor, 10%), 30%);

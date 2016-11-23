@@ -1,0 +1,36 @@
+{% extends 'base/admin_base.tmpl' %}
+
+{% block contents %}
+  <header>
+    <h2 class="sub_title">Edit Article</h2>
+  </header>
+  <form action="" method="POST">
+    <input
+        class="title"
+        name="title"
+        type="text"
+        value="{{ article.title }}"/>
+    <label for="slug">SLUG: </label>
+    <input class="slug"
+           name="slug"
+           type="text"
+           value="{{ article.slug }}"/>
+    <br/>
+    <label for="tags">TAG: </label>
+    <input
+        class="tags"
+        name="tags"
+        type="text"
+        value="{% for tag in article.tags %}{{ tag }}, {% endfor %}"/>
+    <label for="status">STATUS: </label>
+    <select id="status" name="status">
+      {% for opt in statuses %}
+        <option value="{{ opt }}" {% if opt == article.status.value %}selected{% endif %}>{{ opt }}</option>
+      {% endfor %}
+    </select>
+    <textarea class="content" name="content">{{ article.content }}</textarea>
+    <span class="right">
+      <input type="submit" value="POST ARTICLE"/>
+    </span>
+  </form>
+{% endblock%}
