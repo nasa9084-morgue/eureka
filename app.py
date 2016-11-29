@@ -14,6 +14,7 @@ route = bottle.route
 get = bottle.get
 post = bottle.post
 redirect = bottle.redirect
+error = bottle.error
 
 
 @route('/')
@@ -218,6 +219,14 @@ def tag_delete(session, slug):
     tag = models.Tag.query().get(slug)
     models.session.delete(tag)
     redirect('/admin/tag')
+
+
+@error(404)
+@view('404.tmpl')
+@tools.site_info
+def error404(err):
+    session = bottle.request.environ.get('beaker.session')
+    return {'message': 'Not Found'}
 
 
 @bottle.route('/static/<fpath:path>')
