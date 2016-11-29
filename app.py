@@ -21,7 +21,7 @@ error = bottle.error
 @view('index.tmpl')
 @tools.session
 def index(session):
-    articles = models.Article.query().filter(models.Article.status=='published')
+    articles = models.Article.query().order_by(models.Article.published).filter(models.Article.status=='published')
     users = models.User.query().all()
     return {'articles': articles,
             'users': users}
