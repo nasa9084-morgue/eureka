@@ -161,7 +161,7 @@ def article_detail_update(session, slug):
 
 
 @route('/admin/tag')
-@view('tag.tmpl')
+@view('admin_tags.tmpl')
 @tools.session
 @tools.login
 def tag(session):
