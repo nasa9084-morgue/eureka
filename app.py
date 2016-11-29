@@ -1,5 +1,4 @@
 import bottle
-from bottle import jinja2_view as view
 from beaker.middleware import SessionMiddleware
 from datetime import datetime
 import functools
@@ -8,6 +7,7 @@ import re
 import config as cfg
 import models
 import tools
+from tools import view
 
 app = SessionMiddleware(bottle.app(), cfg.beaker_opts)
 route = bottle.route

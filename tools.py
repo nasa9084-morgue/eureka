@@ -4,6 +4,8 @@ import enum
 import functools
 
 import config as cfg
+import filters
+
 
 def json_serialize(o):
     if isinstance(o, datetime):
@@ -19,7 +21,6 @@ def session(func):
         session = bottle.request.environ.get('beaker.session')
         path = bottle.request.path.split('/')[1:]
         return add_dict(
-            cfg.site_info,
             func(*a, **kw, session=session),
             {'session': session, 'path': path})
     return inner
@@ -49,3 +50,12 @@ def add_dict(*dicts):
     return {k: v
             for d in dicts if d is not None
             for k, v in d.items()}
+
+
+view = functools.partial(bottle.jinja2_view,
+                         template_settings={
+                             'globals': cfg.site_info,
+                             'filters': {
+                                 'org': filters.org
+                             }
+                         })

@@ -9,7 +9,7 @@
           <span class="date">{{ article.published.strftime('%Y-%m-%d') }}</span>
         {% endif %}
       </header>
-      <p>{{ article.abstract()|replace('\n', '<br />') }}</p>
+      <p>{{ article.abstract()|replace('\n', '<br />')|org }}</p>
       {% if article.has_more() %}
         <p class="readmore"><a href="/article/{{ article.slug }}">READ MORE</a></p>
       {% endif %}
