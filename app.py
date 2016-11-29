@@ -40,6 +40,8 @@ def tag_articles(slug, session):
 @tools.session
 def article(slug, session):
     article = models.Article.query().get(slug)
+    if not article:
+        bottle.abort(404)
     if article.status.value == 'draft':
         bottle.abort(403)
     return {'article': article}
