@@ -83,7 +83,7 @@ def article(session):
 
 
 @route('/admin/article.new')
-@view('article_new.tmpl')
+@view('admin_article_new.tmpl')
 @tools.session
 @tools.login
 def article_new(session):
