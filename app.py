@@ -170,7 +170,7 @@ def tag(session):
 
 
 @route('/admin/tag/<slug>')
-@view('tag_detail.tmpl')
+@view('admin_tag_articles.tmpl')
 @tools.session
 @tools.login
 def tag_detail(session, slug):
