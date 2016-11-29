@@ -1,0 +1,54 @@
+{% extends 'base/base.tmpl' %}
+
+{% block contents %}
+  <article class="fullcontent">
+    <header>
+      <h2><a href="/article/{{ article.slug }}">{{ article.title|e }}</a></h2>
+      <span class="date">{{ article.published.strftime('%Y-%m-%d') }}</span>
+    </header>
+    <p>{{ article.content|replace('\n', '<br />') }}</p>
+    <footer>
+      <section class="tags">
+        Tag:
+        {% for tag in article.tags %}
+          <a href="/tag/{{ tag }}" class="tag">{{ tag|e }}</a>
+        {% endfor %}
+      </section>
+      <section class="comment">
+        <h3>COMMENTS</h3>
+        {% for comment in article.comments %}
+          <article>
+            <h4>{{ comment.author }}</h4>
+            <p>{{ comment.content| e |replace('\n', '<br />') }}</p>
+            <footer>
+            {{ comment.created }}</footer>
+          </article>
+        {% endfor %}
+      </section>
+      <section class="new_comment">
+        <h3>WRITE YOUR COMMENT</h3>
+        <form action="/article/{{ article.slug }}/comment.new" method="POST">
+          <div>
+            <label for="name">NAME: </label>
+            <input name="name" type="text" required/>
+          </div>
+          <div>
+            <label for="email">EMAIL: </label>
+            <input name="email" type="text"/>
+          </div>
+          <div>
+            <label for="url">URL: </label>
+            <input name="url" type="text"/>
+          </div>
+          <div>
+            <label for="content">Comment: </label><br/>
+            <textarea id="content" name="content" required></textarea>
+          </div>
+          <div>
+            <input name="submit" type="submit" value="SUBMIT"/>
+          </div>
+        </form>
+      </section>
+    </footer>
+  </article>
+{% endblock%}

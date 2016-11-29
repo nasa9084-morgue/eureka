@@ -42,10 +42,12 @@ body#userview {
         background: $UserViewContentBGColor;
         padding: 1em;
 
-        .abstract {
-            padding-bottom: 3em;
-            margin-bottom: 1em;
-            &:not(:first-of-child):not(:last-of-child){
+        article {
+            &.abstract:not(:last-child) {
+                padding-bottom: 3em;
+                margin-bottom: 1em;
+            }
+            &:not(:first-of-child):not(:last-child){
                 border-bottom: solid 1px gray;
             }
             header {
@@ -84,10 +86,74 @@ body#userview {
                 }
             }
             footer {
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
-                color: $FooterColor;
+                .tags {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    color: $FooterColor;
+                }
+            }
+            &.fullcontent {
+                .comment {
+                    margin: 0 2em;
+                    margin-top: 1em;
+                    margin-left: 2em;
+                    h3 {
+                        font-size: .9em;
+                        border-bottom: 1px solid $UserViewBaseColor;
+                        padding-left: .5em;
+                        margin-bottom: 1.5em;
+                    }
+                    article {
+                        display: flex;
+                        padding: 0 1em;
+                        margin: 0 1em;
+                        align-items: baseline;
+                        h4 {
+                            flex: 1;
+                            text-align: right;
+                            padding-right: 1em;
+                            border-top: 1px solid $UserViewBaseColor;
+                        }
+                        p {
+                            border-left: 5px solid $UserViewBaseColor;
+                            flex: 8;
+                            margin: 0;
+                            padding-top: 1px;
+                            border-bottom: 1px solid $UserViewBaseColor;
+                        }
+                        footer {
+                            font-size: .7em;
+                            align-self: flex-end;
+                            border-bottom: 1px solid $UserViewBaseColor;
+                        }
+                        &:not(:last-child) {
+                            padding-bottom: .5em;
+                            margin-bottom: .5em;
+                        }
+                    }
+                }
+                .new_comment {
+                    width: 50%;
+                    margin: 1em 25%;
+                    h3 {
+                        text-align: center;
+                    }
+                    div {
+                        display: flex;
+                        margin-bottom: .1em;
+                        label {
+                            flex: 1;
+                        }
+                        input, textarea {
+                            flex: 3;
+                            border: 1px dashed $UserViewBaseColor;
+                        }
+                        input[type="submit"] {
+                            background: $UserViewBaseColor;
+                        }
+                    }
+                }
             }
         }
     }

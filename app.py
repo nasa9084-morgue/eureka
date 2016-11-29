@@ -34,6 +34,38 @@ def tag_articles(slug, session):
     return {'articles': articles}
 
 
+@route('/article/<slug>')
+@view('article.tmpl')
+@tools.session
+def article(slug, session):
+    article = models.Article.query().get(slug)
+    if article.status.value == 'draft':
+        abort(403)
+    return {'article': article}
+
+
+@post('/article/<slug>/comment.new')
+@tools.session
+def comment_new_post(slug, session):
+    request = bottle.request.forms
+    article = models.Article.query().get(slug)
+    if article.status.value == 'draft':
+        abort(403)
+    new_comment = {
+        'article_slug': slug,
+        'author': request['name'],
+        'content': request['content']
+    }
+    if request.get('email'):
+        new_comment['author_email'] = request['email']
+    if request.get('url'):
+        new_comment['author_comment'] = request['comment']
+    models.session.add(models.Comment(**new_comment))
+    models.session.commit()
+    redirect('/article/{}'.format(slug))
+
+
+
 @route('/login')
 @view('login.tmpl')
 @tools.session
