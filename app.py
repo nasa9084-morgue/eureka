@@ -113,7 +113,7 @@ def dashboard(session):
 @tools.session
 @tools.login
 def article(session):
-    articles = models.Article.query().all()
+    articles = models.Article.query().order_by(models.Article.published)
     return {'articles': articles}
 
 
