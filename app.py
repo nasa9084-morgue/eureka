@@ -51,7 +51,7 @@ def article(slug, session):
 @post('/article/<slug>/comment.new')
 @tools.session
 def comment_new_post(slug, session):
-    request = bottle.request.forms
+    request = bottle.request.forms.decode()
     article = models.Article.query().get(slug)
     if article.status.value == 'draft':
         bottle.abort(403)
@@ -82,7 +82,7 @@ def login(session):
 @post('/login')
 @tools.session
 def login_middle(session):
-    login = bottle.request.forms.get('login_name')
+    login = bottle.request.forms.decode().get('login_name')
     user = models.session.query(models.User).get(login)
     if user is None:
         redirect('/login')
@@ -130,7 +130,7 @@ def article_new(session):
 @tools.session
 @tools.login
 def article_new_post(session):
-    request = bottle.request.forms
+    request = bottle.request.forms.decode()
     tag_strs = [tag
                 for tag in re.split(',\s?', request.get('tags'))
                 if tag]
@@ -169,7 +169,7 @@ def article_detail(session, slug):
 @tools.session
 @tools.login
 def article_detail_update(session, slug):
-    request = bottle.request.forms
+    request = bottle.request.forms.decode()
     article = models.Article.query().get(slug)
     if article.title != request.get('title'):
         article.title = request.get('title')
