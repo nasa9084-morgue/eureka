@@ -120,7 +120,7 @@ def article_new_post(session):
 
 
 @route('/admin/article/<slug>')
-@view('article_detail.tmpl')
+@view('admin_article_detail.tmpl')
 @tools.session
 @tools.login
 def article_detail(session, slug):
