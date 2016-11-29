@@ -25,6 +25,17 @@ def session(func):
     return inner
 
 
+def site_info(func):
+    @functools.wraps(func)
+    def inner(*a, **kw):
+        session = bottle.request.environ.get('beaker.session')
+        return add_dict(
+            cfg.site_info,
+            func(*a, **kw),
+            {'session': session})
+    return inner
+
+
 def login(func):
     @functools.wraps(func)
     def inner(session, *a, **kw):
