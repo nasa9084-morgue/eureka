@@ -32,6 +32,7 @@ def index(session):
 @tools.session
 def tag_articles(slug, session):
     articles = models.Tag.query().get(slug).articles
+    articles = [article for article in articles if article.status.value=='published']
     return {'articles': articles}
 
 
