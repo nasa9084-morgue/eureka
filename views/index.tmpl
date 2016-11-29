@@ -14,10 +14,12 @@
         <p class="readmore"><a href="/article/{{ article.slug }}">READ MORE</a></p>
       {% endif %}
       <footer>
-        Tag:
-        {% for tag in article.tags %}
-          <a href="/tag/{{ tag }}" class="tag">{{ tag|e }}</a>
-        {% endfor %}
+        <div class="tags">
+          Tag:
+          {% for tag in article.tags %}
+            <a href="/tag/{{ tag }}" class="tag">{{ tag|e }}</a>
+          {% endfor %}
+        </div>
       </footer>
     </article>
   {% endfor %}
