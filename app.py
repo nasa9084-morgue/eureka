@@ -74,7 +74,7 @@ def dashboard(session):
 
 
 @route('/admin/article')
-@view('article.tmpl')
+@view('admin_article.tmpl')
 @tools.session
 @tools.login
 def article(session):
