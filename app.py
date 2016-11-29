@@ -41,7 +41,7 @@ def tag_articles(slug, session):
 def article(slug, session):
     article = models.Article.query().get(slug)
     if article.status.value == 'draft':
-        abort(403)
+        bottle.abort(403)
     return {'article': article}
 
 
@@ -51,7 +51,7 @@ def comment_new_post(slug, session):
     request = bottle.request.forms
     article = models.Article.query().get(slug)
     if article.status.value == 'draft':
-        abort(403)
+        bottle.abort(403)
     new_comment = {
         'article_slug': slug,
         'author': request['name'],
