@@ -62,7 +62,7 @@ def comment_new_post(slug, session):
     if request.get('email'):
         new_comment['author_email'] = request['email']
     if request.get('url'):
-        new_comment['author_comment'] = request['comment']
+        new_comment['author_url'] = request['url']
     models.session.add(models.Comment(**new_comment))
     models.session.commit()
     redirect('/article/{}'.format(slug))
