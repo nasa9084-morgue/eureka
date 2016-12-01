@@ -74,9 +74,53 @@ body#userview {
                 border-radius: .5em;
                 color: lighten($UserViewBaseColor, 30%);
             }
-            p {
+            section.maincontent {
                 padding-left: 1em;
                 margin: .5em;
+
+                h2 {
+                    font-size: 1.2em;
+                    font-weight: 600;
+                    border: {
+                        left: .25em $UserViewBaseColor solid;
+                        bottom: 1px solid $UserViewBaseColor;
+                    }
+                    padding-left: .5em;
+                    margin-top: .5em;
+                }
+                h3 {
+                    font-size: 1.1em;
+                    font-weight: 500;
+                    border-left: .25em $UserViewBaseColor solid;
+                    padding-left: .5em;
+                    margin-top: .5em;
+                }
+                h4 {
+                    font-size: 1.1em;
+                    border-bottom: .1em $UserViewBaseColor dotted;
+                }
+                h5 {
+                    font-size: 1.1em;
+                }
+                code {
+                    margin: .5em;
+                    padding-left: .5em;
+                    border-left: .1em $UserViewBaseColor dotted;
+                }
+                pre {
+                    display: inline;
+                    border: 1px lighten($UserViewBaseColor, 15%) solid;
+                    background: lighten($UserViewBaseColor, 25%);
+                }
+                q, blockquote {
+                    display: block;
+                    border-left: .5em lighten(desaturate($UserViewBaseColor, 60%), 20%) solid;
+                    padding-left: 1em;
+                    margin: 1em;
+                    &:before, &:after {
+                        content: none;
+                    }
+                }
             }
             .readmore {
                 text-align: center;
