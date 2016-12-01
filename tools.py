@@ -56,6 +56,7 @@ view = functools.partial(bottle.jinja2_view,
                          template_settings={
                              'globals': cfg.site_info,
                              'filters': {
-                                 'org': filters.org
+                                 'org': filters.org,
+                                 'org_esc': filters.org_esc
                              }
                          })

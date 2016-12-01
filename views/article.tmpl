@@ -6,7 +6,9 @@
       <h2><a href="/article/{{ article.slug }}">{{ article.title|e }}</a></h2>
       <span class="date">{{ article.published.strftime('%Y-%m-%d') }}</span>
     </header>
-    <p>{{ article.content |replace('\n', '<br />') }}</p>
+    <section class="maincontent">
+      {{ article.content | org}}
+    </section>
     <footer>
       <section class="tags">
         Tag:
@@ -19,9 +21,10 @@
         {% for comment in article.comments %}
           <article>
             <h4><a href="{{ comment.author_url }}">{{ comment.author }}</a></h4>
-            <p>{{ comment.content | e |replace('\n', '<br />') }}</p>
+            <p>{{ comment.content | org_esc | replace('\n', '<br />') }}</p>
             <footer>
-            {{ comment.created }}</footer>
+              {{ comment.created }}
+            </footer>
           </article>
         {% endfor %}
       </section>
