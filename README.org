@@ -1,5 +1,5 @@
 * Eureka
-Blog CMS written in python 3.x
+Blog CMS written in python 3.5
 
 ** feature
 - Blog
