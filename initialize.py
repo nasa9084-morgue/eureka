@@ -7,7 +7,7 @@ import config as cfg
 os.mkdir(cfg.img_save_path)
 
 # initialize database
-models.BaseModel.metadate.drop_all(models.engine)
+models.BaseModel.metadata.drop_all(models.engine)
 models.BaseModel.metadata.create_all(models.engine)
 
 # create hello article
