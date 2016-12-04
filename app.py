@@ -274,4 +274,5 @@ def static(fpath):
 def rollback(e):
     models.session.rollback()
 
-bottle.run(app=app, debug=cfg.debug)
+if __name__ == '__main__':
+    bottle.run(app=app, debug=cfg.debug)
