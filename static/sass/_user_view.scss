@@ -121,6 +121,18 @@ body#userview {
                         content: none;
                     }
                 }
+                img {
+                    max-width: 80%;
+                }
+                .imagebox {
+                    .caption {
+                        text-align: center;
+                        font-size: .7em;
+                    }
+                }
+                .center {
+                    text-align: center;
+                }
             }
             .readmore {
                 text-align: center;

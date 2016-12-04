@@ -2,6 +2,8 @@ import functools
 import html
 import re
 
+import config as cfg
+
 def headline(s):
     m = re.match(r'^(?P<level>\*+)\s+(?P<title>.+?)\s*$', s)
     if m:
@@ -42,8 +44,13 @@ strike_through = functools.partial(
     r'\1<span style="text-decoration: line-through;">\2</span>\3'
 )
 
+image = functools.partial(
+    re.compile(r'(?P<before>.*?)\[\[(?P<filename>.+?)(?P<c>:)?(?(c)(?P<caption>.+))\]\](?P<w>::)?(?(w)(?P<width>\d+)px|)(?P<after>.*?)').sub,
+    r'\g<before><div class="center imagebox"><img src="/{}/\g<filename>" width=\g<width>><br /><span class="caption">\g<caption></span></div>\g<after>'.format(cfg.img_save_path)
+)
+
 stylers = [
-    bold, italic, underlined, verbatim, code, strike_through, headline
+    bold, italic, underlined, verbatim, code, strike_through, headline, image
 ]
 
 def org(org):
@@ -69,3 +76,6 @@ def org_esc(org):
             line = styler(line)
         ret.append(line)
     return "\n".join(ret)
+
+def image_filepath(filename):
+    return '/' + cfg.img_save_path + '/' + filename

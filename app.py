@@ -2,6 +2,7 @@ import bottle
 from beaker.middleware import SessionMiddleware
 from datetime import datetime
 import functools
+import os
 import re
 
 import config as cfg
@@ -196,6 +197,33 @@ def article_detail_update(session, slug):
     redirect('/admin/article')
 
 
+@route('/admin/image')
+@view('admin_images.tmpl')
+@tools.session
+@tools.login
+def image(session):
+    images = os.listdir(cfg.img_save_path)
+    return {'images': images}
+
+
+@post('/admin/image')
+@tools.session
+@tools.login
+def image_post(session):
+    filename = bottle.request.forms.decode().get('filename')
+    posted = bottle.request.files.get('upload_img')
+    if not posted:
+        redirect('/admin/image')
+    _, extension = os.path.splitext(posted.filename)
+    if not extension.lower() in cfg.allow_img_ext:
+        redirect('/admin/image')
+    if not filename.lower().endswith(extension.lower()):
+        redirect('/admin/image')
+    posted.filename = filename
+    posted.save(cfg.img_save_path)
+    redirect('/admin/image')
+
+
 @route('/admin/tag')
 @view('admin_tags.tmpl')
 @tools.session
@@ -230,6 +258,11 @@ def tag_delete(session, slug):
 def error404(err):
     session = bottle.request.environ.get('beaker.session')
     return {'message': 'Not Found'}
+
+
+@bottle.route('/' + cfg.img_save_path + '/<fname>')
+def static(fname):
+    return bottle.static_file(fname, root=cfg.img_save_path)
 
 
 @bottle.route('/static/<fpath:path>')

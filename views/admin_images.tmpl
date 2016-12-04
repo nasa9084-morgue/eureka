@@ -1,0 +1,22 @@
+{% extends 'base/admin_base.tmpl' %}
+
+{% block contents %}
+  <header>
+    <h2 class="sub_title">Images</h2>
+  </header>
+  <form id="input_file" action="" method="POST" enctype="multipart/form-data">
+    <label for="upload_img">upload image</label>
+    <input id="upload_img" name="upload_img" type="file"
+           onChange="filename.style.display='inline-block'; filename.value=this.value;"/>
+    <input id="filename" name="filename" type="text" />
+    <input name="submit" type="submit" value="Upload"/>
+  </form>
+  <section class="images">
+    {% for image in images %}
+      <div class="imagebox">
+        <img src="{{ image | image_filepath }}"/>
+        {{ image }}
+      </div>
+    {% endfor %}
+  </section>
+{% endblock%}

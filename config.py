@@ -29,3 +29,9 @@ mysql = {
     'db': 'eureka_db',
     'charset': 'utf8'
 }
+
+# Image save path
+img_save_path = 'img'
+
+# Image Upload Allow
+allow_img_ext = ['.png', '.jpg', '.gif']

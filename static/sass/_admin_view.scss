@@ -140,6 +140,22 @@ body#dashboard {
             }
         }
 
+        .images {
+            padding: 1em;
+            display: flex;
+            flex-wrap: wrap;
+            .imagebox {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 1em;
+                width: 200px;
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
         input[type="text"]{
             margin-bottom: .25em;
             border: solid 1px darken($AdminViewBaseColor, 20%);
@@ -160,6 +176,42 @@ body#dashboard {
 
             &.tags {
                 width: 50%;
+            }
+        }
+
+        #input_file {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 1.5em;
+            label {
+                background: $AdminViewBaseColor;
+                margin: 0;
+                padding: 0;
+                padding-left: 1em;
+                flex: 1;
+            }
+            input[type="file"] {
+                display: none;
+            }
+            input[type="text"] {
+                flex: 4;
+                background: darken($AdminViewBaseColor, 30%);
+                color: lighten($AdminViewBaseColor, 30%);
+                border: none;
+                margin: 0;
+                padding: 0;
+                padding-left: 1em;
+            }
+            input[type="submit"] {
+                background: lighten($AdminViewBaseColor, 15%);
+                border: none;
+                border-radius: 0 .5em .5em 0;
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                flex: 1;
             }
         }
 
