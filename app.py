@@ -102,15 +102,15 @@ def logout(session):
     redirect('/login')
 
 
-@route('/admin')
+@route('/{}'.format(cfg.admin_path))
 @view('dashboard.tmpl')
 @tools.session
 @tools.login
 def dashboard(session):
-    return
+    return {}
 
 
-@route('/admin/article')
+@route('/{}/article'.format(cfg.admin_path))
 @view('admin_article.tmpl')
 @tools.session
 @tools.login
@@ -119,7 +119,7 @@ def article(session):
     return {'articles': articles}
 
 
-@route('/admin/article.new')
+@route('/{}/article.new'.format(cfg.admin_path))
 @view('admin_article_new.tmpl')
 @tools.session
 @tools.login
@@ -127,7 +127,7 @@ def article_new(session):
     return {'statuses': cfg.statuses}
 
 
-@post('/admin/article.new')
+@post('/{}/article.new'.format(cfg.admin_path))
 @tools.session
 @tools.login
 def article_new_post(session):
@@ -156,7 +156,7 @@ def article_new_post(session):
     redirect('/admin/article')
 
 
-@route('/admin/article/<slug>')
+@route('/{}/article/<slug>'.format(cfg.admin_path))
 @view('admin_article_detail.tmpl')
 @tools.session
 @tools.login
@@ -166,7 +166,7 @@ def article_detail(session, slug):
             'statuses': cfg.statuses}
 
 
-@post('/admin/article/<slug>')
+@post('/{}/article/<slug>'.format(cfg.admin_path))
 @tools.session
 @tools.login
 def article_detail_update(session, slug):
@@ -197,7 +197,7 @@ def article_detail_update(session, slug):
     redirect('/admin/article')
 
 
-@route('/admin/image')
+@route('/{}/image'.format(cfg.admin_path))
 @view('admin_images.tmpl')
 @tools.session
 @tools.login
@@ -206,7 +206,7 @@ def image(session):
     return {'images': images}
 
 
-@post('/admin/image')
+@post('/{}/image'.format(cfg.admin_path))
 @tools.session
 @tools.login
 def image_post(session):
@@ -224,7 +224,7 @@ def image_post(session):
     redirect('/admin/image')
 
 
-@route('/admin/tag')
+@route('/{}/tag'.format(cfg.admin_path))
 @view('admin_tags.tmpl')
 @tools.session
 @tools.login
@@ -233,7 +233,7 @@ def tag(session):
     return {'tags': tags}
 
 
-@route('/admin/tag/<slug>')
+@route('/{}/tag/<slug>'.format(cfg.admin_path))
 @view('admin_tag_articles.tmpl')
 @tools.session
 @tools.login
@@ -243,7 +243,7 @@ def tag_detail(session, slug):
             'articles': articles}
 
 
-@route('/admin/tag/<slug>/delete')
+@route('/{}/tag/<slug>/delete'.format(cfg.admin_path))
 @tools.session
 @tools.login
 def tag_delete(session, slug):
@@ -274,4 +274,4 @@ def static(fpath):
 def rollback(e):
     models.session.rollback()
 
-bottle.run(app=app, reloader=True, debug=True)
+bottle.run(app=app, debug=cfg.debug)
