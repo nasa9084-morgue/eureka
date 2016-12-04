@@ -34,9 +34,13 @@ a line start with *s is converted to headline.
 =+striked string+= -> +striked string+
 
 *** image
-[[[[filename]]]] is converted to image tag.
+[\[filename]\] is converted to image tag.
+
+*backslash is not needed*
 
 **** EXTENDED
-[[[[filename:caption]]]]
+[\[filename:caption]\]
 
-[[[[filename]]]]::width
+[\[filename]\]::width
+
+*backslash is not needed*
