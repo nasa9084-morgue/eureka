@@ -10,6 +10,11 @@ os.mkdir(cfg.img_save_path)
 models.BaseModel.metadata.drop_all(models.engine)
 models.BaseModel.metadata.create_all(models.engine)
 
+models.session.add(
+    models.User(**{'login': 'admin', 'password': 'PASSWORD'})
+)
+models.session.commit()
+
 # create hello article
 user = models.User.query().get('admin')
 new_article = {
