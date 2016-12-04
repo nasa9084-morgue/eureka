@@ -10,7 +10,7 @@ import models
 import tools
 from tools import view
 
-app = SessionMiddleware(bottle.app(), cfg.beaker_opts)
+app = application = SessionMiddleware(bottle.app(), cfg.beaker_opts)
 route = bottle.route
 get = bottle.get
 post = bottle.post
