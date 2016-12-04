@@ -7,8 +7,7 @@ competible: 3.5 or later
 - Blog
   + text contents
   + tagging
+  + comment to article
+  + upload image
+  + extended org
 
-** future
-- Blog
-  + comment
-  + image/video management
