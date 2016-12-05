@@ -62,7 +62,7 @@ image = functools.partial(
 
 
 stylers = [
-    bold, italic, underlined, verbatim, code, strike_through,
+    bold, underlined, verbatim, code, strike_through,
     headline,
     hyperlink_with_description, hyperlink_without_description,
     image
