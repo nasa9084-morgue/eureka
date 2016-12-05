@@ -45,7 +45,7 @@ strike_through = functools.partial(
 )
 
 hyperlink_with_description = functools.partial(
-    re.compile(r'(?P<before>.*?)\[\[(?P<link>https?://.+?)\]\[(?P<description>).+?\]\](?P<after>.*?)').sub,
+    re.compile(r'(?P<before>.*?)\[\[(?P<link>https?://.+?)\]\[(?P<description>.+?\]\](?P<after>.*?)').sub,
     r'\g<before><a href="\g<link>">\g<description></a>\g<after>'
 )
 
