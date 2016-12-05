@@ -44,13 +44,28 @@ strike_through = functools.partial(
     r'\1<span style="text-decoration: line-through;">\2</span>\3'
 )
 
+hyperlink_with_description = functools.partial(
+    re.compile(r'(?P<before>.*?)\[\[(?P<link>https?://.+?)\]\[(?P<description>).+?\]\](P<after>.*?)').sub,
+    r'\g<before><a href="\g<link>">\g<description></a>\g<after>'
+)
+
+hyperlink_without_description = functools.partial(
+    re.compile(r'(?P<before>.*?)\[\[(?P<link>https?://.+?)\]\](P<after>.*?)').sub,
+    r'\g<before><a href="\g<link>">\g<link></a>\g<after>'
+)
+
+
 image = functools.partial(
     re.compile(r'(?P<before>.*?)\[\[(?P<filename>.+?)(?P<c>:)?(?(c)(?P<caption>.+))\]\](?P<w>::)?(?(w)(?P<width>\d+)px|)(?P<after>.*?)').sub,
     r'\g<before><div class="center imagebox"><img src="/{}/\g<filename>" width=\g<width>><br /><span class="caption">\g<caption></span></div>\g<after>'.format(cfg.img_save_path)
 )
 
+
 stylers = [
-    bold, italic, underlined, verbatim, code, strike_through, headline, image
+    bold, italic, underlined, verbatim, code, strike_through,
+    headline,
+    hyperlink_with_description, hyperlink_without_description,
+    image
 ]
 
 def org(org):
