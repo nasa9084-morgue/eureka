@@ -20,7 +20,7 @@ bold = functools.partial(
 )
 
 italic = functools.partial(
-    re.compile(r'(.*?)/(?!>)(.*?)/(.*?)').sub,
+    re.compile(r'(.*?)/(?!>)(.+?)/(.*?)').sub,
     r'\1<span style="font-style:italic;">\2</span>\3'
 )
 
