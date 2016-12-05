@@ -102,6 +102,10 @@ body#userview {
                 h5 {
                     font-size: 1.1em;
                 }
+                a {
+                    color: darken($UserViewBaseColor, 30%);
+                    border-bottom: 1px dotted $UserViewBaseColor;
+                }
                 code {
                     margin: .5em;
                     padding-left: .5em;
