@@ -52,7 +52,7 @@ def add_dict(*dicts):
             for d in dicts if d is not None
             for k, v in d.items()}
 
-org_to_html = functools.partial(org_to_html, default_heading=2)
+org_to_html = functools.partial(org_to_html, default_heading=2, newline='\n')
 view = functools.partial(bottle.jinja2_view,
                          template_settings={
                              'globals': cfg.site_info,
