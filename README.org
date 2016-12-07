@@ -9,38 +9,4 @@ competible: 3.5 or later
   + tagging
   + comment to article
   + upload image
-  + extended org
-
-** Extended Org
-*** headline
-a line start with *s is converted to headline.
-
-*** bold
-=*bold string*= -> *bold string*
-
-*** italic
-=/italic string/= -> /italic string/
-
-*** underlined
-=_underlined string_= -> _underlined string_
-
-*** verbatim
-~=verbatim string=~ -> =verbatim string=
-
-*** code
-=~code string~= -> ~code string~
-
-*** strike through
-=+striked string+= -> +striked string+
-
-*** image
-[\[filename]\] is converted to image tag.
-
-*backslash is not needed*
-
-**** EXTENDED
-[\[filename:caption]\]
-
-[\[filename]\]::width
-
-*backslash is not needed*
+  + org-mode syntax (using [[https://github.com/nasa9084/py-org][pyorg]])
