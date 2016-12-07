@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8"/>
-    <title>{{ site_title }}</title>
+    <title>{% if article is defined %}{{ article.title }}::{% endif %}{{ site_title }}</title>
     <link href="/static/css/style.css" rel="stylesheet"/>
   </head>
   <body id="userview">
