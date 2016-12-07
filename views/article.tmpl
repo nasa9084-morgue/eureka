@@ -21,7 +21,7 @@
         {% for comment in article.comments %}
           <article>
             <h4><a href="{{ comment.author_url }}">{{ comment.author }}</a></h4>
-            <p>{{ comment.content | org_esc | replace('\n', '<br />') }}</p>
+            <div>{{ comment.content | e | org | replace('\n', '<br />') }}</div>
             <footer>
               {{ comment.created }}
             </footer>
