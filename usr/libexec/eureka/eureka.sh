@@ -5,4 +5,4 @@ if [ ! -e /var/run/eureka ]; then
 fi
 
 cd /root/eureka
-uwsgi uwsgi.ini
+/root/eureka/venv/bin/uwsgi uwsgi.ini
