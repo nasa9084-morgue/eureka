@@ -5,7 +5,6 @@ import functools
 
 from pyorg import org_to_html
 import config as cfg
-import filters
 
 
 def json_serialize(o):
@@ -52,12 +51,16 @@ def add_dict(*dicts):
             for d in dicts if d is not None
             for k, v in d.items()}
 
+
+def image_filepath(path):
+    return '/' + cfg.img_save_path + '/' + path
+
 org_to_html = functools.partial(org_to_html, default_heading=2, newline='\n')
 view = functools.partial(bottle.jinja2_view,
                          template_settings={
                              'globals': cfg.site_info,
                              'filters': {
                                  'org': org_to_html,
-                                 'image_filepath': filters.image_filepath
+                                 'image_filepath': image_filepath
                              }
                          })
