@@ -1,7 +1,7 @@
-import models
+import app.models
 import os
 
-import config as cfg
+import app.config as cfg
 
 # create image dir
 os.mkdir(cfg.img_save_path)
