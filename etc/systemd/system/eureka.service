@@ -6,7 +6,7 @@ WantedBy=multi-user.target
 
 [Service]
 User=root
-type=fork
+Type=fork
 PIDFile=/var/run/eureka/uwsgi.pid
 ExecStart=/usr/libexec/eureka/eureka.sh
 ExecStop=/bin/kill -QUIT $MAINPID
