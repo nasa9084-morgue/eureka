@@ -7,4 +7,5 @@ WantedBy=multi-user.target
 [Service]
 User=root
 ExecStart=/usr/libexec/eureka/eureka.sh
+ExecStop=/root/eureka/venv/bin/uwsgi --stop /var/run/eureka/uwsgi.pid
 Restart=always
