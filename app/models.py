@@ -148,3 +148,9 @@ class Config(BaseModel, EurekaModel):
     key = Column(String(64), primary_key=True)
     value = Column(String(512), nullable=False)
 
+    @classmethod
+    def get_dict(cls):
+        dct = {}
+        for config in cls.query().all():
+            dct[config.key] = config.value
+        return dct
