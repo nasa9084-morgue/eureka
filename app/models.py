@@ -10,7 +10,6 @@ from sqlalchemy.orm import relation, sessionmaker
 from sqlalchemy.sql.expression import text
 
 import config as cfg
-import tools
 
 db_url = 'mysql+pymysql://{user}:{passwd}@{host}/{db}?charset={charset}'
 engine = sqlalchemy.create_engine(db_url.format(**cfg.mysql))
@@ -97,6 +96,13 @@ class Article(BaseModel, EurekaModel):
     def has_more(self):
         return '<more>' in self.content
 
+    def _json_serialize(o):
+        if isinstance(o, datetime):
+            return o.strftime('%Y/%m/%d %H:%M')
+        elif isinstance(o, enum.Enum):
+            return o.value
+        raise TypeError(repr(o) + ' is not JSON serializable')
+
     def json(self):
         return json.dumps({
             'slug': self.slug,
@@ -108,7 +114,7 @@ class Article(BaseModel, EurekaModel):
             'published': self.published,
             'modified': self.modified,
             'comments': self.comments
-        }, default=tools.json_serialize)
+        }, default=self._json_serialize)
 
     def publish(self):
         if self.status.value == 'draft':

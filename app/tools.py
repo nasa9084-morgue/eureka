@@ -7,15 +7,6 @@ from pyorg import org_to_html
 import config as cfg
 import models
 
-
-def json_serialize(o):
-    if isinstance(o, datetime):
-        return o.strftime('%Y/%m/%d %H:%M')
-    elif isinstance(o, enum.Enum):
-        return o.value
-    raise TypeError(repr(o) + ' is not JSON serializable')
-
-
 def session(func):
     @functools.wraps(func)
     def inner(*a, **kw):
