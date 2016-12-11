@@ -265,6 +265,38 @@ def tag_delete(session, slug):
     redirect('/admin/tag')
 
 
+@route('/{}/user'.format(cfg.admin_path))
+@view('admin_user.tmpl')
+@tools.site_info
+@tools.session
+@tools.login
+def admin_user(session):
+    return {}
+
+
+@post('/{}/user'.format(cfg.admin_path))
+@tools.session
+@tools.login
+def admin_user_post(session):
+    request = bottle.request.forms.decode()
+    user = models.User.query().get(session['login'])
+    login = request.get('login')
+    current_password = request.get('current_password')
+    new_password = request.get('new_password')
+    if not login or not current_password:
+        redirect('/admin/user?error_code=40')
+    if user.password != tools.password(current_password):
+        redirect('/admin/user?error_code=41')
+    if user.login != login:
+        user.login = login
+    if new_password:
+        user.password = tools.password(new_password)
+    user.save()
+    session['login'] = user.login
+    session.save()
+    redirect('/admin/user')
+
+
 @route('/{}/config'.format(cfg.admin_path))
 @view('admin_config.tmpl')
 @tools.site_info

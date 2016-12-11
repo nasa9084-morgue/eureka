@@ -1,0 +1,24 @@
+{% extends 'base/admin_base.tmpl' %}
+
+{% block contents %}
+  <header>
+    <h2 class="sub_title">User</h2>
+  </header>
+  <section id="config">
+    <form action="" method="POST">
+      <div class="row">
+        <label for="login">Login Name</label>
+        <input name="login" type="text" value="{{ session.login }}"/>
+      </div>
+      <div class="row">
+        <label for="current_password">Current Password</label>
+        <input name="current_password" type="password" value=""/>
+      </div>
+      <div class="row">
+        <label for="new_password">New Password</label>
+        <input name="new_password" type="password" value=""/>
+      </div>
+      <input name="submit" type="submit" value="Save User Config"/>
+    </form>
+  </section>
+{% endblock%}
