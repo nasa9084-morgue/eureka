@@ -5,6 +5,7 @@ import functools
 
 from pyorg import org_to_html
 import config as cfg
+import models
 
 
 def json_serialize(o):
@@ -31,7 +32,7 @@ def site_info(func):
     def inner(*a, **kw):
         session = bottle.request.environ.get('beaker.session')
         return add_dict(
-            cfg.site_info,
+            models.Config.query().all(),
             func(*a, **kw),
             {'session': session})
     return inner
@@ -58,7 +59,7 @@ def image_filepath(path):
 org_to_html = functools.partial(org_to_html, default_heading=2, newline='\n')
 view = functools.partial(bottle.jinja2_view,
                          template_settings={
-                             'globals': cfg.site_info,
+                             'globals': models.Config.query().all(),
                              'filters': {
                                  'org': org_to_html,
                                  'image_filepath': image_filepath

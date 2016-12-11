@@ -10,6 +10,11 @@ os.mkdir(cfg.img_save_path)
 models.BaseModel.metadata.drop_all(models.engine)
 models.BaseModel.metadata.create_all(models.engine)
 
+for k, v in cfg.site_info.items():
+    models.session.add(
+        models.Config(**{'key': k, 'value': v})
+    )
+
 models.session.add(
     models.User(**{'login': 'admin', 'password': 'PASSWORD'})
 )

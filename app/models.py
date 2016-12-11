@@ -133,3 +133,11 @@ class Comment(BaseModel, EurekaModel):
     content = Column(Text, nullable=False)
     created = Column(DateTime, nullable=False,
                      server_default=CURRENT_TIMESTAMP)
+
+
+class Config(BaseModel, EurekaModel):
+    __tablename__ = cfg.table_prefix + '_config'
+
+    # table definition
+    key = Column(String(64), primary_key=True)
+    value = Column(String(512), nullable=False)
