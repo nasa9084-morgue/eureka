@@ -4,6 +4,7 @@ import pymysql.cursors
 debug = False
 
 # site info
+# only used for initialize
 site_info = {
     'site_title': 'Eureka',
     'site_description': 'Eureka Blog CMS'
