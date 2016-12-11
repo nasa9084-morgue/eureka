@@ -1,3 +1,4 @@
+{% import 'base/macro.tmpl' as macro %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,7 +14,7 @@
     </div>
     {% if query.get('error_code') %}
       <div id="error_message">
-        {{ query.get('error_code') }}
+        {{ macro.error(query.get('error_code')) }}
       </div>
     {% endif %}
   </body>

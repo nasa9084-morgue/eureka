@@ -1,0 +1,9 @@
+{% macro error(error_code) %}
+  {% if error_code == '20' %}
+    Cannot Login.
+  {% elif error_code == '40' %}
+    Login Name or Current Password is empty.
+  {% elif error_code == '41' %}
+    Current Password is Invalid.
+  {% endif %}
+{% endmacro %}
