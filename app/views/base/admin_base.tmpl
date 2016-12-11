@@ -11,5 +11,10 @@
     <div id="dashboard_content">
       {% block contents %}{% endblock%}
     </div>
+    {% if query.get('error_code') %}
+      <div id="error_message">
+        {{ query.get('error_code') }}
+      </div>
+    {% endif %}
   </body>
 </html>

@@ -12,9 +12,10 @@ def session(func):
     def inner(*a, **kw):
         session = bottle.request.environ.get('beaker.session')
         path = bottle.request.path.split('/')[1:]
+        query = bottle.request.query.decode()
         return add_dict(
             func(*a, **kw, session=session),
-            {'session': session, 'path': path})
+            {'session': session, 'path': path, 'query': query})
     return inner
 
 
