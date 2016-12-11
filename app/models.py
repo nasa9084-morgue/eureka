@@ -145,5 +145,6 @@ class Config(BaseModel, EurekaModel):
     __tablename__ = cfg.table_prefix + '_config'
 
     # table definition
-    configkey = Column(String(64), primary_key=True)
-    configvalue = Column(String(512), nullable=False)
+    key = Column(String(64), primary_key=True)
+    value = Column(String(512), nullable=False)
+
