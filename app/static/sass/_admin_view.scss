@@ -262,16 +262,4 @@ body#dashboard {
             justify-content: flex-end;
         }
     }
-
-    #error_message {
-        position: fixed;
-        height: auto;
-        padding: 1em;
-        bottom: 1em;
-        right: 0;
-        background: lighten($AdminViewBaseColor, 20%);
-        border: solid 2px mix(red, $AdminViewBaseColor);
-        border-right: none;
-        border-radius: 10px 0 0 10px;
-    }
 }

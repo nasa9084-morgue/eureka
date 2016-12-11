@@ -1,3 +1,4 @@
+{% import 'base/macro.tmpl' as macro %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -21,5 +22,10 @@
           <input name="submit" type="submit" value="login"/>
         </div>
       </form>
+      {% if query.get('error_code') %}
+        <div id="error_message">
+          {{ macro.error(query.get('error_code')) }}
+        </div>
+      {% endif %}
   </body>
 </html>

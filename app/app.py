@@ -90,13 +90,13 @@ def login_middle(session):
     login = bottle.request.forms.decode().get('login_name')
     user = models.session.query(models.User).get(login)
     if user is None:
-        redirect('/login')
+        redirect('/login?error_code=20')
     password = bottle.request.forms.get('password')
     if user.password == tools.password(password):
         session['login'] = user.login
         session.save()
         redirect('/admin')
-    redirect('/login')
+    redirect('/login?error_code=20')
 
 
 @route('/logout')
