@@ -225,7 +225,7 @@ body#dashboard {
         }
 
         select {
-            background: white;
+            background: white
         }
 
         textarea {
@@ -240,6 +240,20 @@ body#dashboard {
             &:focus {
                 transition: box-shadow .5s ease;
                 box-shadow: 0 0 2px 2px $AdminViewBaseColor;
+            }
+        }
+
+        #config {
+            .row {
+                display: flex;
+                align-items: baseline;
+                label {
+                    min-width: 8em;
+                    &:after {
+                        content: ':';
+                        margin-right: 1em;
+                    }
+                }
             }
         }
 

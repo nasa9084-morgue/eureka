@@ -50,7 +50,6 @@ def image_filepath(path):
 org_to_html = functools.partial(org_to_html, default_heading=2, newline='\n')
 view = functools.partial(bottle.jinja2_view,
                          template_settings={
-                             'globals': models.Config.get_dict(),
                              'filters': {
                                  'org': org_to_html,
                                  'image_filepath': image_filepath

@@ -20,6 +20,7 @@ error = bottle.error
 
 @route('/')
 @view('index.tmpl')
+@tools.site_info
 @tools.session
 def index(session):
     articles = models.Article.query().order_by(models.Article.published).filter(models.Article.status=='published')
@@ -30,6 +31,7 @@ def index(session):
 
 @route('/tag/<slug>')
 @view('index.tmpl')
+@tools.site_info
 @tools.session
 def tag_articles(slug, session):
     articles = models.Tag.query().get(slug).articles
@@ -39,6 +41,7 @@ def tag_articles(slug, session):
 
 @route('/article/<slug>')
 @view('article.tmpl')
+@tools.site_info
 @tools.session
 def article(slug, session):
     article = models.Article.query().get(slug)
@@ -73,6 +76,7 @@ def comment_new_post(slug, session):
 
 @route('/login')
 @view('login.tmpl')
+@tools.site_info
 @tools.session
 def login(session):
     if session.get('login'):
@@ -96,6 +100,7 @@ def login_middle(session):
 
 
 @route('/logout')
+@tools.site_info
 @tools.session
 def logout(session):
     session.delete()
@@ -104,6 +109,7 @@ def logout(session):
 
 @route('/{}'.format(cfg.admin_path))
 @view('dashboard.tmpl')
+@tools.site_info
 @tools.session
 @tools.login
 def dashboard(session):
@@ -112,6 +118,7 @@ def dashboard(session):
 
 @route('/{}/article'.format(cfg.admin_path))
 @view('admin_article.tmpl')
+@tools.site_info
 @tools.session
 @tools.login
 def article(session):
@@ -121,6 +128,7 @@ def article(session):
 
 @route('/{}/article.new'.format(cfg.admin_path))
 @view('admin_article_new.tmpl')
+@tools.site_info
 @tools.session
 @tools.login
 def article_new(session):
@@ -158,6 +166,7 @@ def article_new_post(session):
 
 @route('/{}/article/<slug>'.format(cfg.admin_path))
 @view('admin_article_detail.tmpl')
+@tools.site_info
 @tools.session
 @tools.login
 def article_detail(session, slug):
@@ -199,6 +208,7 @@ def article_detail_update(session, slug):
 
 @route('/{}/image'.format(cfg.admin_path))
 @view('admin_images.tmpl')
+@tools.site_info
 @tools.session
 @tools.login
 def image(session):
@@ -226,6 +236,7 @@ def image_post(session):
 
 @route('/{}/tag'.format(cfg.admin_path))
 @view('admin_tags.tmpl')
+@tools.site_info
 @tools.session
 @tools.login
 def tag(session):
@@ -235,6 +246,7 @@ def tag(session):
 
 @route('/{}/tag/<slug>'.format(cfg.admin_path))
 @view('admin_tag_articles.tmpl')
+@tools.site_info
 @tools.session
 @tools.login
 def tag_detail(session, slug):
@@ -244,12 +256,35 @@ def tag_detail(session, slug):
 
 
 @route('/{}/tag/<slug>/delete'.format(cfg.admin_path))
+@tools.site_info
 @tools.session
 @tools.login
 def tag_delete(session, slug):
     tag = models.Tag.query().get(slug)
     models.session.delete(tag)
     redirect('/admin/tag')
+
+
+@route('/{}/config'.format(cfg.admin_path))
+@view('admin_config.tmpl')
+@tools.site_info
+@tools.session
+@tools.login
+def config(session):
+    return {}
+
+
+@post('/{}/config'.format(cfg.admin_path))
+@tools.session
+@tools.login
+def config_post(session):
+    request = bottle.request.forms.decode()
+    configs = models.Config.query().all()
+    for config in configs:
+        if config.key in request and config.value != request[config.key]:
+            config.value = request[config.key]
+            config.save()
+    redirect('/{}/config'.format(cfg.admin_path))
 
 
 @error(404)
@@ -275,4 +310,4 @@ def rollback(e):
     models.session.rollback()
 
 if __name__ == '__main__':
-    bottle.run(app=app, debug=cfg.debug)
+    bottle.run(app=app, debug=True)
