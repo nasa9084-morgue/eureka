@@ -43,7 +43,7 @@ class User(BaseModel, EurekaModel):
 
 
 tag_relations = sqlalchemy.Table(
-    'category_relations', BaseModel.metadata,
+    'tag_relations', BaseModel.metadata,
     Column('article', String(64),
            ForeignKey(cfg.table_prefix + '_articles.slug',
                       ondelete=CASCADE)),
