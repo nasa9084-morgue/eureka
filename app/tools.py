@@ -23,7 +23,7 @@ def site_info(func):
     def inner(*a, **kw):
         session = bottle.request.environ.get('beaker.session')
         return add_dict(
-            models.Config.query().all(),
+            models.Config.get_dict(),
             func(*a, **kw),
             {'session': session})
     return inner
@@ -50,7 +50,7 @@ def image_filepath(path):
 org_to_html = functools.partial(org_to_html, default_heading=2, newline='\n')
 view = functools.partial(bottle.jinja2_view,
                          template_settings={
-                             'globals': models.Config.query().all(),
+                             'globals': models.Config.get_dict(),
                              'filters': {
                                  'org': org_to_html,
                                  'image_filepath': image_filepath
