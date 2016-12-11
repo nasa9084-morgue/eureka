@@ -38,6 +38,10 @@ def login(func):
     return inner
 
 
+def password(password):
+    return password
+
+
 def add_dict(*dicts):
     return {k: v
             for d in dicts if d is not None

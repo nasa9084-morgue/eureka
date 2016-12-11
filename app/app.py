@@ -92,7 +92,7 @@ def login_middle(session):
     if user is None:
         redirect('/login')
     password = bottle.request.forms.get('password')
-    if user.password == password:
+    if user.password == tools.password(password):
         session['login'] = user.login
         session.save()
         redirect('/admin')
