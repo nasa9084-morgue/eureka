@@ -19,7 +19,8 @@ statuses = [
 # beaker session options
 beaker_opts = {
     'session.type': 'redis',
-    'session.url': '127.0.0.1:6379'
+    'session.url': '127.0.0.1:6379',
+    'session.expire': 60*60*24, # seconds
 }
 
 # table name prefix
