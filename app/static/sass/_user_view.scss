@@ -107,9 +107,11 @@ body#userview {
                     border-bottom: 1px dotted $UserViewBaseColor;
                 }
                 code {
-                    margin: .5em;
-                    padding-left: .5em;
-                    border-left: .1em $UserViewBaseColor dotted;
+                    background: lighten($UserViewBaseColor, 30%);
+                    border: .1em $UserViewBaseColor dotted;
+                    font-weight: 600;
+                    padding: 0 .2em;
+                    margin: 0 .1em;
                 }
                 pre {
                     display: inline;
