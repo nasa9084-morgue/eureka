@@ -1,3 +1,4 @@
+
 import bottle
 from beaker.middleware import SessionMiddleware
 from datetime import datetime
@@ -34,8 +35,10 @@ def index(session):
 @tools.site_info
 @tools.session
 def tag_articles(slug, session):
-    articles = models.Tag.query().get(slug).articles
-    articles = [article for article in articles if article.status.value=='published']
+    tag = models.Tag.query().get(slug)
+    if tag is None:
+        bottle.abort(404)
+    articles = [article for article in tag.articles if article.status.value=='published']
     return {'articles': articles}
 
 
