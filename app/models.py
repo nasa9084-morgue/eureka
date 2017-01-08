@@ -22,6 +22,17 @@ CASCADE = 'CASCADE'
 CURRENT_TIMESTAMP = text('CURRENT_TIMESTAMP')
 
 
+
+def _json_serialize(o):
+    if isinstance(o, datetime):
+        return o.strftime('%Y/%m/%d %H:%M')
+    elif isinstance(o, enum.Enum):
+        return o.value
+    elif isinstance(o, sqlalchemy.orm.query.Query):
+        return str(o)
+    raise TypeError(repr(o) + ' is not JSON serializable')
+
+
 class EurekaModel(object):
     @classmethod
     def query(cls, *a, **kw):
@@ -29,6 +40,16 @@ class EurekaModel(object):
 
     def save(self):
         session.commit()
+
+    def json(self):
+        return json.dumps(
+            {
+                k: v for k, v in self.__dict__.items()
+                if not k.startswith('_')
+            }, default=_json_serialize)
+
+    def serialize(self):
+        return json.loads(self.json())
 
 
 class User(BaseModel, EurekaModel):
@@ -95,14 +116,7 @@ class Article(BaseModel, EurekaModel):
 
     def has_more(self):
         return '<more>' in self.content
-
-    def _json_serialize(o):
-        if isinstance(o, datetime):
-            return o.strftime('%Y/%m/%d %H:%M')
-        elif isinstance(o, enum.Enum):
-            return o.value
-        raise TypeError(repr(o) + ' is not JSON serializable')
-
+    '''
     def json(self):
         return json.dumps({
             'slug': self.slug,
@@ -114,7 +128,8 @@ class Article(BaseModel, EurekaModel):
             'published': self.published,
             'modified': self.modified,
             'comments': self.comments
-        }, default=self._json_serialize)
+        }, default=_json_serialize)
+'''
 
     def publish(self):
         if self.status.value == 'draft':
