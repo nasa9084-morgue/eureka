@@ -106,14 +106,14 @@ body#userview {
                     color: darken($UserViewBaseColor, 30%);
                     border-bottom: 1px dotted $UserViewBaseColor;
                 }
-                code {
+                p code {
                     background: lighten($UserViewBaseColor, 30%);
                     border: .1em $UserViewBaseColor dotted;
                     font-weight: 600;
                     padding: 0 .2em;
                     margin: 0 .1em;
                 }
-                pre {
+                p pre {
                     display: inline;
                     border: 1px lighten($UserViewBaseColor, 15%) solid;
                     background: lighten($UserViewBaseColor, 25%);
