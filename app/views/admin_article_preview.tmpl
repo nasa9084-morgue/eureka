@@ -1,0 +1,12 @@
+{% extends 'base/base.tmpl' %}
+
+{% block contents %}
+  <article class="fullcontent">
+    <header>
+      <h2>{{ article.title | e }}</h2>
+    </header>
+    <section class="maincontent">
+      {{ article.content | org | replace('\n', '<br />') }}
+    </section>
+  </article>
+{% endblock%}

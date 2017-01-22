@@ -222,6 +222,16 @@ def article_detail_update(session, slug):
     redirect('/admin/article')
 
 
+@route('/{}/article/<slug>/preview'.format(cfg.admin_path))
+@view('admin_article_preview.tmpl')
+@tools.site_info
+@tools.session
+@tools.login
+def article_preview(session, slug):
+    article = models.Article.query().get(slug)
+    return {'article': article}
+
+
 @route('/{}/comments'.format(cfg.admin_path))
 @view('admin_comments.tmpl')
 @tools.site_info
