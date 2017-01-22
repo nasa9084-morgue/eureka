@@ -18,17 +18,19 @@
     <tbody>
       {% for comment in comments %}
         <tr>
-          <td class="article"><a href="/admin/article/{{ comment.article_slug }}">{{ comment.article_slug }}</a></td>
+          <td class="article"><a href="/admin/article/{{ comment.article_slug }}">
+            {{ comment.article_slug[:15] }}{% if comment.article_slug | length > 15 %}...{% endif %}
+          </a></td>
           <td class="author">
             {% if comment.author_url %}
               <a href="{{ comment.author_url | e }}">
             {% endif %}
-            {{ comment.author | e }}
+            {{ comment.author[:15] | e }}{% if comment.author | length > 15 %}...{% endif %}
             {% if comment.author_url %}
               </a>
             {% endif %}
           </td>
-          <td class="email">{{ comment.author_email or "" | e }}</td>
+          <td class="email">{{ comment.author_email[:15] or "" | e }}{% if comment.author_email | length > 15 %}...{% endif %}</td>
           <td class="content">{{ comment.content[:15] | e }}{% if comment.content | length > 15 %}...{% endif %}</td>
           <td class="created">{{ comment.created }}</td>
           <td class="del"><a href="/admin/comments/{{ comment.id_ }}/delete">DEL</a></td>
