@@ -13,6 +13,7 @@
         <th class="content">Content</th>
         <th class="created">Created</th>
         <th class="del"></th>
+        <th class="spam"></th>
       </tr>
     </thead>
     <tbody>
@@ -34,6 +35,7 @@
           <td class="content">{{ comment.content[:15] | e }}{% if comment.content | length > 15 %}...{% endif %}</td>
           <td class="created">{{ comment.created }}</td>
           <td class="del"><a href="/admin/comments/{{ comment.id_ }}/delete">DEL</a></td>
+          <td class="spam"><a href="/admin/comments/{{ comment.id_ }}/as_spam">SPAM</a></td>
         </tr>
       {% endfor %}
     </tbody>

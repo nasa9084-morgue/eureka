@@ -241,6 +241,22 @@ def comment_delete(session, id_):
     redirect('/admin/comments')
 
 
+@route('/{}/comments/<id_:int>/as_spam'.format(cfg.admin_path))
+@tools.session
+@tools.login
+def comment_as_spam(session, id_):
+    comment = models.Comment.query().get(id_)
+    akismet.submit_spam(
+        '', '',
+        comment_author=comment.author,
+        comment_author_url=comment.author_url,
+        comment_author_email=comment.author_email,
+        comment_content=comment.content
+    )
+    models.session.delete(comment)
+    redirect('/admin/comments')
+
+
 @route('/{}/image'.format(cfg.admin_path))
 @view('admin_images.tmpl')
 @tools.site_info
