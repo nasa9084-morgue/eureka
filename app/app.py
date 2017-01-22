@@ -1,4 +1,4 @@
-
+from akismet import Akismet
 import bottle
 from beaker.middleware import SessionMiddleware
 from datetime import datetime
@@ -18,6 +18,7 @@ post = bottle.post
 redirect = bottle.redirect
 error = bottle.error
 
+akismet = Akismet(cfg.akismet_apikey, blog=cfg.blog_url)
 
 @route('/')
 @view('index.tmpl')
@@ -71,6 +72,18 @@ def comment_new_post(slug, session):
         new_comment['author_email'] = request['email']
     if request.get('url'):
         new_comment['author_url'] = request['url']
+    remote_ip = bottle.request.environ.get('HTTP_X_FORWARDED_FOR') or bottle.request.environ.get('REMOTE_ADDR')
+    ua = bottle.request.get_header('User-Agent')
+    is_spam = akismet.check(
+        remote_ip, ua,
+        comment_author=new_comment['author'],
+        comment_author_email=new_comment.get('author_email'),
+        comment_author_url=new_comment.get('author_url'),
+        comment_content=new_comment['content'],
+        referrer=bottle.request.get_header('HTTP_REFERER')
+    )
+    if is_spam:
+        redirect('/article/{}'.format(slug))
     models.session.add(models.Comment(**new_comment))
     models.session.commit()
     redirect('/article/{}'.format(slug))

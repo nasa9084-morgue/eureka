@@ -42,3 +42,7 @@ img_save_path = 'img'
 
 # Image Upload Allow
 allow_img_ext = ['.png', '.jpg', '.gif']
+
+# Akismet
+akismet_apikey = ''
+blog_url = ''
