@@ -1,0 +1,39 @@
+{% extends 'base/admin_base.tmpl' %}
+
+{% block contents %}
+  <header>
+    <h2 class="sub_title">COMMENTS</h2>
+  </header>
+  <table class="list_table">
+    <thead>
+      <tr>
+        <th class="article">Article</th>
+        <th class="author">Author</th>
+        <th class="email">E-mail</th>
+        <th class="content">Content</th>
+        <th class="created">Created</th>
+        <th class="del"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for comment in comments %}
+        <tr>
+          <td class="article"><a href="/admin/article/{{ comment.article_slug }}">{{ comment.article_slug }}</a></td>
+          <td class="author">
+            {% if comment.author_url %}
+              <a href="{{ comment.author_url | e }}">
+            {% endif %}
+            {{ comment.author | e }}
+            {% if comment.author_url %}
+              </a>
+            {% endif %}
+          </td>
+          <td class="email">{{ comment.author_email or "" | e }}</td>
+          <td class="content">{{ comment.content[:15] | e }}{% if comment.content | length > 15 %}...{% endif %}</td>
+          <td class="created">{{ comment.created }}</td>
+          <td class="del"><a href="/admin/comments/{{ comment.id_ }}/delete">DEL</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock%}

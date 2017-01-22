@@ -209,6 +209,25 @@ def article_detail_update(session, slug):
     redirect('/admin/article')
 
 
+@route('/{}/comments'.format(cfg.admin_path))
+@view('admin_comments.tmpl')
+@tools.site_info
+@tools.session
+@tools.login
+def comments_list(session):
+    comments = models.Comment.query().all()
+    return {'comments': comments}
+
+
+@route('/{}/comments/<id_:int>/delete'.format(cfg.admin_path))
+@tools.session
+@tools.login
+def comment_delete(session, id_):
+    comment = models.Comment.query().get(id_)
+    models.session.delete(comment)
+    redirect('/admin/comments')
+
+
 @route('/{}/image'.format(cfg.admin_path))
 @view('admin_images.tmpl')
 @tools.site_info
