@@ -4,7 +4,7 @@ bottle==0.12.10
 Jinja2==2.8
 MarkupSafe==0.23
 PyMySQL==0.7.9
-pyorg==0.1.6
+pyorg==0.1.7
 python-akismet==0.2.3
 redis==2.10.5
 SQLAlchemy==1.1.4
