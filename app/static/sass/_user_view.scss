@@ -106,6 +106,9 @@ body#userview {
                     color: darken($UserViewBaseColor, 30%);
                     border-bottom: 1px dotted $UserViewBaseColor;
                 }
+                p {
+                    margin-bottom: .5em;
+                }
                 p code {
                     background: lighten($UserViewBaseColor, 30%);
                     border: .1em $UserViewBaseColor dotted;
