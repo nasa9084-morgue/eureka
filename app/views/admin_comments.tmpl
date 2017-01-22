@@ -31,7 +31,11 @@
               </a>
             {% endif %}
           </td>
-          <td class="email">{{ comment.author_email[:15] or "" | e }}{% if comment.author_email | length > 15 %}...{% endif %}</td>
+          <td class="email">
+            {% if comment.author_email %}
+              {{ comment.author_email[:13] | e}}{% if comment.author_email | length > 15 %}...{% endif %}
+            {% endif %}
+          </td>
           <td class="content">{{ comment.content[:15] | e }}{% if comment.content | length > 15 %}...{% endif %}</td>
           <td class="created">{{ comment.created }}</td>
           <td class="del"><a href="/admin/comments/{{ comment.id_ }}/delete">DEL</a></td>
