@@ -6,7 +6,7 @@
       <h2>{{ article.title | e }}</h2>
     </header>
     <section class="maincontent">
-      {{ article.content | org | replace('\n', '<br />') }}
+      {{ article.content | e | org | replace('\n', '<br />') }}
     </section>
   </article>
 {% endblock%}
