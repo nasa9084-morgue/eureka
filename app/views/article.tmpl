@@ -7,7 +7,7 @@
       <span class="date">{{ article.published.strftime('%Y-%m-%d') }}</span>
     </header>
     <section class="maincontent">
-      {{ article.content | e | org | replace('\n', '<br />') | replace('<more>', '') }}
+      {{ article.content | e | org | replace('\n', '<br />') | replace('&lt;more&gt;', '') }}
     </section>
     <footer>
       <section class="tags">
